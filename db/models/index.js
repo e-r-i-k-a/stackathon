@@ -15,10 +15,16 @@ const Game = db.define('game', {
 		type: Sequelize.DATE
   },
   minPlayer: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    defaultValue: 1,
+    validate: {
+      isNumeric: true,
+      min: 1
+    }
   },
   maxPlayer: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    defaultValue: null
   },
   confirmationDate: {
     type: Sequelize.DATE
@@ -32,7 +38,9 @@ const Player = db.define('player', {
 	},
 	email: {
     type: Sequelize.STRING,
-    isEmail: true
+    validate: {
+      isEmail: true
+    }
 	}
 })
 

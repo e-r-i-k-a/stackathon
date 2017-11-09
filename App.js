@@ -6,9 +6,9 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>hello world!</Text>
+        <Text>Hello World!</Text>
         <TouchableWithoutFeedback
-          onPress={()=>{Alert.alert('Congratulations, you tapped a button.')}}>
+          onPress={()=>{Alert.alert('Congratulations, you pressed a button.')}}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Click to Start</Text>
           </View>

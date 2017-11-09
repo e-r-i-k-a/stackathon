@@ -21,9 +21,9 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "start-server": "NODE_ENV='development' nodemon server -e html,js,css  --ignore public",
+    "start-server": "NODE_ENV='development' nodemon server/start.js -e html,js,css  --ignore public",
     "seed": "node seed",
-    "start-dev": "npm run start-server & nodemon server/start.js"
+    "start-dev": "npm run start-server"
   },
   "jest": {
     "preset": "jest-expo"
