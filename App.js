@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, ScrollView, FlatList, SectionList, View} from 'react-native';
-import styles from './stylesheet.js'
+import styles from './public/stylesheet.js'
 
 export default class App extends Component {
   render() {
