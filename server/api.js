@@ -12,8 +12,16 @@ const bluebird = require('bluebird');
 // api.get('/', (req, res, next) => res.send({hello: 'world'}))
 
 //GET:
-api.get('/', (req, res, next) => {
+api.get('/player', (req, res, next) => {
   db.Player.findAll({include: [{all: true}]})
+  .then(allData => {
+    res.json(allData);
+  })
+  .catch(next)
+})
+
+api.get('/game', (req, res, next) => {
+  db.Game.findAll({include: [{all: true}]})
   .then(allData => {
     res.json(allData);
   })
