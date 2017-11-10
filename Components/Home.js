@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, ScrollView, FlatList, SectionList, View} from 'react-native';
-import styles from './public/stylesheet.js'
+import styles from '../public/stylesheet.js'
 import axios from 'axios'
 import {Actions, Router, Scene} from 'react-native-router-flux'
-import Home from './Components/Home'
-import Test from './Components/Test'
-          {/* onPress={()=>{Alert.alert('Congratulations, you pressed a button.')}}> */}
 
-export default class App extends Component {
+export default class Start extends Component {
 
   constructor(props) {
     super(props)
@@ -28,12 +25,18 @@ export default class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Scene key= 'Root'>
-          <Scene key= 'Home' component={Home}/>
-          <Scene key='Test' component={Test}/>
-        </Scene>
-      </Router>
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.h1}>Hello from Start Component!</Text>
+        </View>
+        <TouchableWithoutFeedback
+          onPress={()=> Actions.Test()}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Click to Start</Text>
+
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
     );
   }
 }

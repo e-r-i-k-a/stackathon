@@ -6,18 +6,24 @@ export default styles = StyleSheet.create({
     flex: 1,
     //fill all available space, shared evenly amongst each other component with the same parent.
     //The larger the flex, the higher the ratio of space a component will take compared to its siblings.
-    backgroundColor: '#fff',
+    backgroundColor: '#FFBAC6',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  h1: {
+    fontSize: 40,
+    fontWeight: 'bold'
   },
   button: {
     marginBottom: 30,
     width: 260,
     alignItems: 'center',
-    backgroundColor: 'red',
+    backgroundColor: '#A32C41',
   },
   buttonText: {
     padding: 20,
+    fontSize: 20,
+    fontWeight: 'bold',
     color: 'white'
   }
 });
