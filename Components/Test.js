@@ -3,8 +3,9 @@ import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, 
 import styles from '../public/stylesheet.js'
 import axios from 'axios'
 import {Actions, Router, Scene} from 'react-native-router-flux'
+import {homeIp, schoolIp} from '../server/ip'
 
-export default class Start extends Component {
+export default class Test extends Component {
 
   constructor(props) {
     super(props)
@@ -14,8 +15,7 @@ export default class Start extends Component {
   }
 
 	componentDidMount () {
-    axios.get('http://172.16.27.39:1337/api/game')
-    //network>wireless>ipV4address
+    axios.get(homeIp+'/api/game')
 		.then(res => res.data)
 		.then(games => {
       this.setState({games})
@@ -32,7 +32,6 @@ export default class Start extends Component {
         <TouchableWithoutFeedback
           onPress={()=>{Alert.alert('Congratulations, you pressed a button.')}}>
           <View style={styles.button}>
-            <Text style={styles.buttonText}>Click to Start</Text>
             {this.state.games.map(game => {
               return <View key={game.id}>
                 <Text>{game.name}</Text>

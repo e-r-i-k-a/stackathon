@@ -28,6 +28,33 @@ api.get('/game', (req, res, next) => {
   .catch(next)
 })
 
+//POST:
+api.post('/game', (req, res, next) => {
+  db.Game.create(req.body)
+  .then((game) => {
+    res.status(201).json(game);
+  })
+  .catch(next);
+})
+
+
+// //POST:
+// api.post('/students', function (req, res, next) {
+//   db.Player.create(req.body)
+//   .then ((students) => {
+//     res.status(201).json(students);
+//   })
+//   .catch(next);
+// })
+
+// api.post('/Game', function (req, res, next) {
+//   db.Game.create(req.body)
+//   .then ((students) => {
+//     res.status(201).json(students);
+//   })
+//   .catch(next);
+// })
+
 // api.get('/Game', (req, res, next) => {
 //   db.Game.findAll()
 //   .then((Game) => {
@@ -108,23 +135,6 @@ api.get('/game', (req, res, next) => {
 //   })
 //   .then((updatedStudent) => {
 //     res.status(200).json(updatedStudent)
-//   })
-//   .catch(next);
-// })
-
-// //POST:
-// api.post('/students', function (req, res, next) {
-//   db.Player.create(req.body)
-//   .then ((students) => {
-//     res.status(201).json(students);
-//   })
-//   .catch(next);
-// })
-
-// api.post('/Game', function (req, res, next) {
-//   db.Game.create(req.body)
-//   .then ((students) => {
-//     res.status(201).json(students);
 //   })
 //   .catch(next);
 // })

@@ -19,11 +19,17 @@ export default styles = StyleSheet.create({
     width: 260,
     alignItems: 'center',
     backgroundColor: '#A32C41',
+    borderRadius: 50
   },
   buttonText: {
-    padding: 20,
-    fontSize: 20,
+    padding: 10,
+    fontSize: 25,
     fontWeight: 'bold',
     color: 'white'
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    backgroundColor: 'white'
   }
 });

@@ -5,7 +5,7 @@ import axios from 'axios'
 import {Actions, Router, Scene} from 'react-native-router-flux'
 import {homeIp, schoolIp} from '../server/ip'
 
-export default class Home extends Component {
+export default class EnterPlayers extends Component {
 
   constructor(props) {
     super(props)
@@ -15,7 +15,7 @@ export default class Home extends Component {
   }
 
 	componentDidMount () {
-    axios.get(homeIp + '/api/game')
+    axios.get(homeIp+'/api/game')
 		.then(res => res.data)
 		.then(games => {
       this.setState({games})
@@ -27,12 +27,16 @@ export default class Home extends Component {
     return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.h1}>Hello!</Text>
+          <Text style={styles.h1}>Hello from Test Component!</Text>
         </View>
         <TouchableWithoutFeedback
-          onPress={()=> Actions.Start()}>
+          onPress={()=>{Alert.alert('Congratulations, you pressed a button.')}}>
           <View style={styles.button}>
-            <Text style={styles.buttonText}>Click to Start</Text>
+            {this.state.games.map(game => {
+              return <View key={game.id}>
+                <Text>{game.name}</Text>
+              </View>})
+            }
           </View>
         </TouchableWithoutFeedback>
       </View>
