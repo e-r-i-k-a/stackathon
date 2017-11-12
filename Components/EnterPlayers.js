@@ -10,33 +10,29 @@ export default class EnterPlayers extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      games: [],
+      createdGame: {}
     }
   }
 
 	componentDidMount () {
-    axios.get(homeIp+'/api/game')
+    axios.get(homeIp+'/api/game/'+this.props.data.id)
 		.then(res => res.data)
-		.then(games => {
-      this.setState({games})
+		.then(createdGame => {
+      this.setState({createdGame})
     })
     .catch((err)=>{console.error('error', err)})
   }
 
   render() {
+    console.log('state',this.state)
     return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.h1}>Hello from Test Component!</Text>
+          <Text style={styles.h1}>Hello from Enter Players Component!</Text>
         </View>
         <TouchableWithoutFeedback
           onPress={()=>{Alert.alert('Congratulations, you pressed a button.')}}>
           <View style={styles.button}>
-            {this.state.games.map(game => {
-              return <View key={game.id}>
-                <Text>{game.name}</Text>
-              </View>})
-            }
           </View>
         </TouchableWithoutFeedback>
       </View>

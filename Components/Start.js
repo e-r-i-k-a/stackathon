@@ -13,54 +13,51 @@ export default class Start extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      gameId: null,
       gameName: '',
-      // gameType: '',
       gameDate: '',
-      minPlayer: 1,
-      // maxPlayer: null,
-      // confirmationDate: ''
+      minPlayer: 1
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleSubmit(event){
+    if (this.state.gameName && this.state.gameDate && this.state.minPlayer) {
     axios.post(homeIp+'/api/game', {
       name: this.state.gameName,
       date: this.state.gameDate,
       minPlayer: this.state.minPlayer,
-      // maxPlayer: this.state.maxPlayer
     })
-    .then(() => {
-      Alert.alert('Your game has been created!')
+    .then((createdGame) => {
+      Alert.alert("Your game has been created!  Let's invite some peeps")
+      Actions.EnterPlayers(createdGame)
     })
-    .then(() => {
-      Actions.EnterPlayers()
-    })
+    } else {
+      if (!this.state.gameName) {
+        Alert.alert('Please name your game!')
+      } else if (!this.state.gameDate) {
+        Alert.alert('When is your game?')
+      } else if (!this.state.minPlayer) {
+        Alert.alert('How many players do you need?')
+      }
+    }
   }
 
   render() {
     const newDate = new Date();
     const now = newDate.getFullYear() + '-' + (newDate.getMonth()+1) + '-' + newDate.getDate()
-    // const numbers = () => {
-    //   let data = [];
-    //   for (let i=0; i<100; i++) {
-    //     data.push(i)
-    //   }
-    //   return data
-    // }
-    const numbers = [1,2,3,4,5]
 
     return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.h1}>Hello from Start Component!</Text>
+          <Text style={styles.h1}>Create a Game!</Text>
         </View>
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>Name: </Text>
           <TextInput
             style={styles.inputText}
-            placeholder='Team or event name'
+            placeholder={this.state.gameName ? this.state.gameName : "Weekly Card Game"}
             placeholderTextColor = "gray"
             onChangeText={(gameName)=> this.setState({gameName})} />
         </View>
@@ -70,7 +67,7 @@ export default class Start extends Component {
           <DatePicker
             style={{width: 200}}
             mode="datetime"
-            placeholder={this.state.gameDate ? this.state.gameDate : "Game Date"}
+            placeholder={this.state.gameDate ? this.state.gameDate : "Next Friday Night"}
             format="YYYY-MM-DD hh:mm"
             minDate={now}
             confirmBtnText="Select"
@@ -98,16 +95,15 @@ export default class Start extends Component {
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>Minimum: </Text>
+          <Text style={styles.inputLabel}>Minimum Players: </Text>
           <TextInput
             style={styles.inputText}
-            placeholder='Minimum amount of friends needed to play'
+            placeholder='We need at least 4 players'
             placeholderTextColor = "gray"
             keyboardType = 'numeric'
             returnKeyType='done'
             onChangeText={(minPlayer)=> this.setState({minPlayer})} />
         </View>
-
 
         <TouchableWithoutFeedback
           onPress={this.handleSubmit} >
