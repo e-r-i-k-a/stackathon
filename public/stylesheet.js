@@ -44,6 +44,9 @@ export default styles = StyleSheet.create({
   inputText: {
     height: 40,
     borderColor: 'gray',
+    borderWidth: 1,
     backgroundColor: 'white',
+    color: 'gray',
+    fontSize: 15
   }
 });
