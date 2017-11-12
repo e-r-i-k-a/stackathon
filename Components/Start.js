@@ -4,6 +4,7 @@ import styles from '../public/stylesheet.js'
 import axios from 'axios'
 import {Actions, Router, Scene} from 'react-native-router-flux'
 import {homeIp, schoolIp} from '../server/ip'
+import Calendar from './Calendar'
 
 export default class Start extends Component {
 
@@ -13,33 +14,24 @@ export default class Start extends Component {
       games: [],
       gameName: '',
       // gameType: '',
-      // gameDate: '',
+      gameDate: '',
       // minPlayer: 1,
       // maxPlayer: null,
-      // confirmationDate: ''
+      confirmationDate: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-	// componentDidMount () {
-  //   axios.get(homeIp+'/api/game')
-	// 	.then(res => res.data)
-	// 	.then(games => {
-  //     this.setState({games})
-  //   })
-  //   .catch((err)=>{console.error('error', err)})
-  // }
-
   handleSubmit(event){
     axios.post(homeIp+'/api/game', {
-      // gameName, gameType, gameDate, minPlayer, maxPlayer, confirmationDate
       name: this.state.gameName
     })
     .then(() => {
-      Alert.alert('Game has been created!')
+      Alert.alert('Your game has been created!')
+    })
+    .then(() => {
       Actions.EnterPlayers()
     })
-    .then(()=>{})
   }
 
   render() {
@@ -49,12 +41,18 @@ export default class Start extends Component {
           <Text style={styles.h1}>Hello from Start Component!</Text>
         </View>
 
-        <View>
-        <TextInput
-          style={styles.input}
-          placeholder='Enter a team or event name'
-          placeholderTextColor = "gray"
-          onChangeText={(gameName)=> this.setState({gameName})} />
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Name: </Text>
+          <TextInput
+            style={styles.inputText}
+            placeholder='Enter a team or event name'
+            placeholderTextColor = "gray"
+            onChangeText={(gameName)=> this.setState({gameName})} />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Date: </Text>
+          <View><Calendar now={new Date()}/></View>
         </View>
 
         <TouchableWithoutFeedback

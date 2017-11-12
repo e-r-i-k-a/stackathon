@@ -27,9 +27,23 @@ export default styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white'
   },
-  input: {
+  inputContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 40
+  },
+  inputLabel: {
+    height: 40,
+    // justifyContent: 'center',
+    // alignContent: 'center',
+    // alignItems: 'center',
+    // textAlign: 'center'
+    // verticalAlign: 'middle'
+  },
+  inputText: {
     height: 40,
     borderColor: 'gray',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   }
 });
