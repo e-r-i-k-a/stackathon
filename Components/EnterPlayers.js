@@ -12,8 +12,7 @@ export default class EnterPlayers extends Component {
     super(props)
     this.state = {
       createdGame: {},
-      playerEmail: '',
-      playerArr: []
+      playerEmail: ''
     },
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -53,6 +52,7 @@ export default class EnterPlayers extends Component {
   render() {
     return (
       <View style={styles.container}>
+
         <View>
           <Text style={styles.h1}>Invite some Friends!</Text>
         </View>
@@ -63,40 +63,30 @@ export default class EnterPlayers extends Component {
             style={styles.inputText}
             onChangeText={(playerEmail)=> this.handleChange(playerEmail)}
             returnKeyType= 'done'
-            //onEndEditing={(playerEmail)=> this.handleOneEntry(playerEmail)}
+            autoCorrect={false}
+            value={this.state.playerEmail}
             placeholder='Enter an email'
             placeholderTextColor = 'gray'
           />
         </View>
 
-<View>
-        <TouchableWithoutFeedback
-          onPress={this.handleSubmit} >
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Submit</Text>
-          </View>
-        </TouchableWithoutFeedback>
-</View>
-{/*
-        <View style={styles.playerList}>
-          <Text>Player List</Text>
-          {this.state.players.map(player => {
-            return
-              <View key={playerEmail}>
-                <Text>{playerEmail}</Text>
-              </View>
-            })
-          }
-        </View> */}
+        <View>
+          <TouchableWithoutFeedback
+            onPress={this.handleSubmit} >
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Add Player</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
 
-<View>
-        <TouchableWithoutFeedback
-          onPress={this.viewTeam}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Player List</Text>
-          </View>
-        </TouchableWithoutFeedback>
-</View>
+        <View>
+          <TouchableWithoutFeedback
+            onPress={this.viewTeam}>
+            <View style={styles.buttonSmall}>
+              <Text style={styles.buttonTextSmall}>Checkout my Team</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
 
       </View>
     );

@@ -25,6 +25,12 @@ export default styles = StyleSheet.create({
     backgroundColor: '#A32C41',
     borderRadius: 50
   },
+  buttonSmall: {
+    width: 180,
+    alignItems: 'center',
+    backgroundColor: '#A32C41',
+    borderRadius: 50
+  },
   buttonText: {
     padding: 10,
     fontSize: 25,
@@ -47,6 +53,8 @@ export default styles = StyleSheet.create({
   },
   inputLabel: {
     height: 40,
+    fontSize: 20,
+    color: 'black'
     // justifyContent: 'center',
     // alignContent: 'center',
     // alignItems: 'center',
@@ -62,8 +70,12 @@ export default styles = StyleSheet.create({
     fontSize: 15
   },
   playerList: {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: 'white'
+    marginBottom: 30,
+    width: 180,
+    alignItems: 'center',
+    borderRadius: 50,
+    backgroundColor: '#DD9FED'
+    // display: 'flex',
+    // flexDirection: 'column',
   }
 });
