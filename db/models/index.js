@@ -28,6 +28,10 @@ const Game = db.define('game', {
   },
   confirmationDate: {
     type: Sequelize.DATE
+  },
+  ready: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
@@ -41,7 +45,11 @@ const Player = db.define('player', {
   },
   name: {
 		type: Sequelize.STRING,
-	}
+  },
+  confirmed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
 })
 
 // associations:

@@ -33,7 +33,7 @@ export default class EnterPlayers extends Component {
   }
 
   handleSubmit(event){
-    axios.post(homeIp+'/api/player/'+this.props.data.id, {
+    axios.post(homeIp+'/api/player/game/'+this.props.data.id, {
       email: this.state.playerEmail
     })
     .then(() => {
@@ -64,6 +64,7 @@ export default class EnterPlayers extends Component {
             onChangeText={(playerEmail)=> this.handleChange(playerEmail)}
             returnKeyType= 'done'
             autoCorrect={false}
+            keyboardType='email-address'
             value={this.state.playerEmail}
             placeholder='Enter an email'
             placeholderTextColor = 'gray'

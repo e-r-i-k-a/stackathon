@@ -36,9 +36,9 @@ api.post('/game', (req, res, next) => {
   .catch(next);
 })
 
-api.post('/player/:gameId', (req, res, next) => {
+api.post('/player/game/:id', (req, res, next) => {
   db.Player.create({
-    gameId: Number(req.params.gameId),
+    gameId: Number(req.params.id),
     email: req.body.email
   })
   .then((newPlayer) => {
@@ -47,22 +47,36 @@ api.post('/player/:gameId', (req, res, next) => {
   .catch(next)
 })
 
-//PUT:
-// api.put('/game/:id', (req, res, next) => {
-//   db.Game.findOne({
-//     where: {
-//       id: Number(req.params.id)
-//     }
-//   })
-//   .then(gameToUpdate => {
-//     gameToUpdate.update({
-//       players: req.body.players
-//     })
-//   })
-//   .then((updatedGame) => {
-//     res.status(200).json(updatedGame)
-//   })
-//   .catch(next)
-// })
+//RSVP POST:
+api.post('/player/:id', (req, res, next) => {
+  db.Player.findOne({
+    where: {
+      id: Number(req.params.id)
+    }
+  })
+  .then(playerToConfirm => {
+    playerToConfirm.update ({
+      confirmed: true
+    })
+    return playerToConfirm;
+  })
+  .then((confirmedPlayer)=>{
+    db.Player.findAndCountAll({
+      where: {
+        gameId: confirmedPlayer.gameId,
+        confirmed: true
+      }
+    })
+    .then((result) => {
+      if((result.count +1) >= req.query.min) {
+        res.status(201).json({ready:true})
+      } else {
+        res.status(200).json()
+      }
+    })
+  })
+  .then(()=> {})
+  .catch(next)
+})
 
 module.exports = api

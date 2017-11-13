@@ -30,13 +30,15 @@ export default class Team extends Component {
     let gameTime = date.substr(date.indexOf('T')+1).slice(0,5)
     let gameDate = `${date.slice(5,7)}/${date.slice(8,10)}/${date.slice(0,4)}`
     let minPlayer = this.state.createdGame.minPlayer
+    let confirmLink = `${homeIp}/api/player/1`
+    let htmlBody = `<html lang="en"><form method="post" action="${confirmLink}"><input type="hidden"><button type="submit">This is a link that sends a PUT request</button></form></html>`
 
     let playerArr = this.state.createdGame.players;
     let emailStr = playerArr.map((player) => player.email).reduce((sum, current) => `${sum},${current}`)
 
     let mailTo = `mailto:${emailStr}`
     let subject = `?subject=Meet me for ${gameName}!`
-    let body = `&body=Join me on ${gameDate} at ${gameTime} for ${gameName}!  I need at least ${minPlayer} people.  Are you down?  Click if yes :-)`
+    let body = `&body=Join me on ${gameDate} at ${gameTime} for ${gameName}!  I need at least ${minPlayer} people.  Are you down?  Click if yes :-)${htmlBody}`
 
     Linking.openURL(mailTo + subject + body)
     Actions.EmailSent()
