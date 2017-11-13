@@ -14,6 +14,10 @@ export default styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold'
   },
+  h2: {
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
   button: {
     marginBottom: 30,
     width: 260,
@@ -27,11 +31,19 @@ export default styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white'
   },
+  buttonTextSmall: {
+    padding: 8,
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'white'
+  },
   inputContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    height: 40
+    height: 40,
+    padding: 10
+    // width: 80
   },
   inputLabel: {
     height: 40,
@@ -48,5 +60,10 @@ export default styles = StyleSheet.create({
     backgroundColor: 'white',
     color: 'gray',
     fontSize: 15
+  },
+  playerList: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'white'
   }
 });

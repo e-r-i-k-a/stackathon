@@ -6,14 +6,6 @@ const Player = db.Player;
 const bluebird = require('bluebird');
 
 //GET:
-// api.get('/player', (req, res, next) => {
-//   db.Player.findAll({include: [{all: true}]})
-//   .then(allData => {
-//     res.json(allData);
-//   })
-//   .catch(next)
-// })
-
 api.get('/game', (req, res, next) => {
   db.Game.findAll({include: [{all: true}]})
   .then(allData => {
@@ -24,6 +16,7 @@ api.get('/game', (req, res, next) => {
 
 api.get('/game/:id', (req, res, next) => {
   db.Game.findOne({
+    include: [{all: true}],
     where: {
       id: Number(req.params.id)
     }
@@ -42,5 +35,34 @@ api.post('/game', (req, res, next) => {
   })
   .catch(next);
 })
+
+api.post('/player/:gameId', (req, res, next) => {
+  db.Player.create({
+    gameId: Number(req.params.gameId),
+    email: req.body.email
+  })
+  .then((newPlayer) => {
+    res.status(201).json(newPlayer)
+  })
+  .catch(next)
+})
+
+//PUT:
+// api.put('/game/:id', (req, res, next) => {
+//   db.Game.findOne({
+//     where: {
+//       id: Number(req.params.id)
+//     }
+//   })
+//   .then(gameToUpdate => {
+//     gameToUpdate.update({
+//       players: req.body.players
+//     })
+//   })
+//   .then((updatedGame) => {
+//     res.status(200).json(updatedGame)
+//   })
+//   .catch(next)
+// })
 
 module.exports = api

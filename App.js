@@ -7,6 +7,7 @@ import Home from './Components/Home'
 import Test from './Components/Test'
 import Start from './Components/Start'
 import EnterPlayers from './Components/EnterPlayers'
+import Team from './Components/Team'
 // import {homeIp, schoolIp} from './server/ip.js'
 
 export default class App extends Component {
@@ -35,6 +36,7 @@ export default class App extends Component {
           <Scene key= 'Test' component={Test}/>
           <Scene key= 'Start' component={Start}/>
           <Scene key= 'EnterPlayers' component={EnterPlayers}/>
+          <Scene key= 'Team' component={Team}/>
         </Scene>
       </Router>
     );

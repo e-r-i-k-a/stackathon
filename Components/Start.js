@@ -5,7 +5,7 @@ import axios from 'axios'
 import {Actions, Router, Scene} from 'react-native-router-flux'
 import DatePicker from 'react-native-datepicker'
 import {homeIp, schoolIp} from '../server/ip'
-import { List, ListItem } from "react-native-elements"
+// import { List, ListItem } from "react-native-elements"
 
 
 export default class Start extends Component {
@@ -109,13 +109,6 @@ export default class Start extends Component {
           onPress={this.handleSubmit} >
           <View style={styles.button}>
             <Text style={styles.buttonText}>Submit</Text>
-          </View>
-        </TouchableWithoutFeedback>
-
-        <TouchableWithoutFeedback
-          onPress={()=> Actions.Test()}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Click to Continue</Text>
           </View>
         </TouchableWithoutFeedback>
 

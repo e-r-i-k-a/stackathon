@@ -32,15 +32,15 @@ const Game = db.define('game', {
 })
 
 const Player = db.define('player', {
-	name: {
-		type: Sequelize.STRING,
-		allowNull: false
-	},
 	email: {
     type: Sequelize.STRING,
-    validate: {
-      isEmail: true
-    }
+    allowNull: false,
+    // validate: {
+    //   isEmail: true
+    // }
+  },
+  name: {
+		type: Sequelize.STRING,
 	}
 })
 
