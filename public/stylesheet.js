@@ -90,12 +90,10 @@ export default styles = StyleSheet.create({
     margin: 18,
     width: 280,
     alignItems: 'center',
-    // alignContent: 'space-around',
     borderRadius: 50,
     backgroundColor: '#DD9FED',
     display: 'flex',
     flexDirection: 'column',
-    // flexWrap: 'nowrap',
   },
   inviteButton: {
     width: 80,
@@ -104,8 +102,6 @@ export default styles = StyleSheet.create({
     borderRadius: 50,
     margin: 5,
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center'
   },
   inviteButtonText: {
     padding: 6,
