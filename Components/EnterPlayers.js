@@ -20,7 +20,7 @@ export default class EnterPlayers extends Component {
   }
 
 	componentDidMount () {
-    axios.get(homeIp+'/api/game/'+this.props.data.id)
+    axios.get(schoolIp+'/api/game/'+this.props.data.id)
 		.then(res => res.data)
 		.then(createdGame => {
       this.setState({createdGame})
@@ -33,7 +33,7 @@ export default class EnterPlayers extends Component {
   }
 
   handleSubmit(event){
-    axios.post(homeIp+'/api/player/game/'+this.props.data.id, {
+    axios.post(schoolIp+'/api/player/game/'+this.props.data.id, {
       email: this.state.playerEmail
     })
     .then(() => {
@@ -57,6 +57,8 @@ export default class EnterPlayers extends Component {
           <Text style={styles.h1}>Invite some Friends!</Text>
         </View>
 
+<View style={styles.body}>
+
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>Email: </Text>
           <TextInput
@@ -71,10 +73,12 @@ export default class EnterPlayers extends Component {
           />
         </View>
 
+        </View>
+
         <View>
           <TouchableWithoutFeedback
             onPress={this.handleSubmit} >
-            <View style={styles.button}>
+            <View style={styles.buttonSmall}>
               <Text style={styles.buttonText}>Add Player</Text>
             </View>
           </TouchableWithoutFeedback>
@@ -83,8 +87,8 @@ export default class EnterPlayers extends Component {
         <View>
           <TouchableWithoutFeedback
             onPress={this.viewTeam}>
-            <View style={styles.buttonSmall}>
-              <Text style={styles.buttonTextSmall}>Checkout my Team</Text>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Checkout my Team</Text>
             </View>
           </TouchableWithoutFeedback>
         </View>

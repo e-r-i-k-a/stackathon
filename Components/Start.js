@@ -21,7 +21,7 @@ export default class Start extends Component {
 
   handleSubmit(event){
     if (this.state.gameName && this.state.gameDate && this.state.minPlayer) {
-    axios.post(homeIp+'/api/game', {
+    axios.post(schoolIp+'/api/game', {
       name: this.state.gameName,
       date: this.state.gameDate,
       minPlayer: this.state.minPlayer,
@@ -50,6 +50,8 @@ export default class Start extends Component {
         <View>
           <Text style={styles.h1}>Create a Game!</Text>
         </View>
+
+<View style={styles.body}>
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>Name: </Text>
@@ -102,6 +104,8 @@ export default class Start extends Component {
             returnKeyType='done'
             onChangeText={(minPlayer)=> this.setState({minPlayer})} />
         </View>
+
+</View>
 
         <TouchableWithoutFeedback
           onPress={this.handleSubmit} >

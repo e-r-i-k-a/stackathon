@@ -10,6 +10,12 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  body: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    margin: 20
+  },
   h1: {
     fontSize: 40,
     fontWeight: 'bold'
@@ -19,8 +25,14 @@ export default styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   button: {
-    marginBottom: 30,
     width: 260,
+    alignItems: 'center',
+    backgroundColor: '#A32C41',
+    borderRadius: 50,
+    margin: 20
+  },
+  buttonMedium: {
+    width: 250,
     alignItems: 'center',
     backgroundColor: '#A32C41',
     borderRadius: 50
@@ -32,8 +44,8 @@ export default styles = StyleSheet.create({
     borderRadius: 50
   },
   buttonText: {
-    padding: 10,
-    fontSize: 25,
+    padding: 8,
+    fontSize: 23,
     fontWeight: 'bold',
     color: 'white'
   },
@@ -46,20 +58,19 @@ export default styles = StyleSheet.create({
   inputContainer: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
     height: 40,
-    padding: 10
-    // width: 80
+    margin: 5
   },
   inputLabel: {
     height: 40,
-    fontSize: 20,
-    color: 'black'
-    // justifyContent: 'center',
-    // alignContent: 'center',
-    // alignItems: 'center',
-    // textAlign: 'center'
-    // verticalAlign: 'middle'
+    fontSize: 15,
+    color: 'black',
+    fontWeight: 'bold',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end'
   },
   inputText: {
     height: 40,
@@ -69,13 +80,37 @@ export default styles = StyleSheet.create({
     color: 'gray',
     fontSize: 15
   },
-  playerList: {
-    marginBottom: 30,
-    width: 180,
+  playerListText: {
+    margin: 5,
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  playerListContainer: {
+    margin: 18,
+    width: 280,
     alignItems: 'center',
+    // alignContent: 'space-around',
     borderRadius: 50,
-    backgroundColor: '#DD9FED'
-    // display: 'flex',
-    // flexDirection: 'column',
+    backgroundColor: '#DD9FED',
+    display: 'flex',
+    flexDirection: 'column',
+    // flexWrap: 'nowrap',
+  },
+  inviteButton: {
+    width: 80,
+    alignItems: 'center',
+    backgroundColor: '#A32C41',
+    borderRadius: 50,
+    margin: 5,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  inviteButtonText: {
+    padding: 6,
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'white'
   }
 });

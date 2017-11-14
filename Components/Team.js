@@ -16,7 +16,7 @@ export default class Team extends Component {
   }
 
 	componentDidMount () {
-    axios.get(homeIp+'/api/game/'+this.props.data)
+    axios.get(schoolIp+'/api/game/'+this.props.data)
 		.then(res => res.data)
 		.then(createdGame => {
       return this.setState({createdGame})
@@ -24,24 +24,19 @@ export default class Team extends Component {
     .catch((err)=>{console.error('error', err)})
   }
 
-  sendEmail () {
+  sendEmail (id, email) {
     let gameName = this.state.createdGame.name
+    let minPlayer = this.state.createdGame.minPlayer
     let date = this.state.createdGame.date
     let gameTime = date.substr(date.indexOf('T')+1).slice(0,5)
     let gameDate = `${date.slice(5,7)}/${date.slice(8,10)}/${date.slice(0,4)}`
-    let minPlayer = this.state.createdGame.minPlayer
-    let confirmLink = `${homeIp}/api/player/1`
-    let htmlBody = `<html lang="en"><form method="post" action="${confirmLink}"><input type="hidden"><button type="submit">This is a link that sends a PUT request</button></form></html>`
 
-    let playerArr = this.state.createdGame.players;
-    let emailStr = playerArr.map((player) => player.email).reduce((sum, current) => `${sum},${current}`)
-
-    let mailTo = `mailto:${emailStr}`
+    let mailTo = `mailto:${email}`
     let subject = `?subject=Meet me for ${gameName}!`
-    let body = `&body=Join me on ${gameDate} at ${gameTime} for ${gameName}!  I need at least ${minPlayer} people.  Are you down?  Click if yes :-)${htmlBody}`
+    let confirmLink = `<a href = ${schoolIp}/api/player/${id}min?min=${minPlayer}>Click</a>`
+    let body = `&body=Join me on ${gameDate} at ${gameTime} for ${gameName}!  I need at least ${minPlayer} people.  Are you down? ${confirmLink} if yes :-)`
 
     Linking.openURL(mailTo + subject + body)
-    Actions.EmailSent()
   }
 
   render() {
@@ -54,21 +49,20 @@ export default class Team extends Component {
           </View>
 
           <TouchableWithoutFeedback>
-            <View style={styles.playerList}>
+            <View style={styles.playerListContainer}>
               {
                 this.state.createdGame.players.map(player => {
                   return <View key={player.id}>
-                  <Text style={styles.buttonTextSmall}>{player.email}</Text>
+                    <Text style={styles.playerListText}>{player.email}</Text>
+                    <TouchableWithoutFeedback
+                    onPress={() => this.sendEmail(player.id, player.email)}>
+                      <View style={styles.inviteButton}>
+                        <Text style={styles.inviteButtonText}>Invite!</Text>
+                      </View>
+                    </TouchableWithoutFeedback>
                   </View>
                 })
               }
-            </View>
-          </TouchableWithoutFeedback>
-
-          <TouchableWithoutFeedback
-          onPress={this.sendEmail}>
-            <View style={styles.button}>
-              <Text style={styles.buttonText}>Send Invites!</Text>
             </View>
           </TouchableWithoutFeedback>
 

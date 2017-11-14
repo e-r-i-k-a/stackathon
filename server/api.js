@@ -4,6 +4,7 @@ const db = require('../db/models')
 const Game = db.Game;
 const Player = db.Player;
 const bluebird = require('bluebird');
+// import {Linking} from 'react-native';
 
 //GET:
 api.get('/game', (req, res, next) => {
@@ -47,8 +48,8 @@ api.post('/player/game/:id', (req, res, next) => {
   .catch(next)
 })
 
-//RSVP POST:
-api.post('/player/:id', (req, res, next) => {
+//RSVP PUT LINK (VIA GET ROUTE)
+api.get('/player/:id/?min', (req, res, next) => {
   db.Player.findOne({
     where: {
       id: Number(req.params.id)
@@ -69,9 +70,9 @@ api.post('/player/:id', (req, res, next) => {
     })
     .then((result) => {
       if((result.count +1) >= req.query.min) {
-        res.status(201).json({ready:true})
+        res.status(201).send("We have enough people, the game is on!")
       } else {
-        res.status(200).json()
+        res.status(200).send("Thanks for responding!  I'll let you know if we get enough people.")
       }
     })
   })
