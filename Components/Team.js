@@ -16,7 +16,7 @@ export default class Team extends Component {
   }
 
 	componentDidMount () {
-    axios.get(schoolIp+'/api/game/'+this.props.data)
+    axios.get(homeIp+'/api/game/'+this.props.data)
 		.then(res => res.data)
 		.then(createdGame => {
       return this.setState({createdGame})
@@ -33,7 +33,7 @@ export default class Team extends Component {
 
     let mailTo = `mailto:${email}`
     let subject = `?subject=Meet me for ${gameName}!`
-    let confirmLink = `<a href = ${schoolIp}/api/player/${id}min?min=${minPlayer}>Click</a>`
+    let confirmLink = `<a href = ${homeIp}/api/player/${id}min?min=${minPlayer}>Click</a>`
     let body = `&body=Join me on ${gameDate} at ${gameTime} for ${gameName}!  I need at least ${minPlayer} people.  Are you down? ${confirmLink} if yes :-)`
 
     Linking.openURL(mailTo + subject + body)

@@ -22,13 +22,13 @@ const Game = db.define('game', {
       min: 1
     }
   },
-  maxPlayer: {
-    type: Sequelize.INTEGER,
-    defaultValue: null
-  },
-  confirmationDate: {
-    type: Sequelize.DATE
-  },
+  // maxPlayer: {
+  //   type: Sequelize.INTEGER,
+  //   defaultValue: null
+  // },
+  // confirmationDate: {
+  //   type: Sequelize.DATE
+  // },
   ready: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
@@ -43,9 +43,9 @@ const Player = db.define('player', {
     //   isEmail: true
     // }
   },
-  name: {
-		type: Sequelize.STRING,
-  },
+  // name: {
+	// 	type: Sequelize.STRING,
+  // },
   confirmed: {
     type: Sequelize.BOOLEAN,
     defaultValue: false

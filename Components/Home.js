@@ -15,7 +15,7 @@ export default class Home extends Component {
   }
 
 	componentDidMount () {
-    axios.get(schoolIp + '/api/game')
+    axios.get(homeIp + '/api/game')
 		.then(res => res.data)
 		.then(games => {
       this.setState({games})

@@ -21,7 +21,7 @@ export default class Start extends Component {
 
   handleSubmit(event){
     if (this.state.gameName && this.state.gameDate && this.state.minPlayer) {
-    axios.post(schoolIp+'/api/game', {
+    axios.post(homeIp+'/api/game', {
       name: this.state.gameName,
       date: this.state.gameDate,
       minPlayer: this.state.minPlayer,

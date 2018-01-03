@@ -20,7 +20,7 @@ export default class EnterPlayers extends Component {
   }
 
 	componentDidMount () {
-    axios.get(schoolIp+'/api/game/'+this.props.data.id)
+    axios.get(homeIp+'/api/game/'+this.props.data.id)
 		.then(res => res.data)
 		.then(createdGame => {
       this.setState({createdGame})
@@ -33,7 +33,7 @@ export default class EnterPlayers extends Component {
   }
 
   handleSubmit(event){
-    axios.post(schoolIp+'/api/player/game/'+this.props.data.id, {
+    axios.post(homeIp+'/api/player/game/'+this.props.data.id, {
       email: this.state.playerEmail
     })
     .then(() => {
@@ -54,7 +54,7 @@ export default class EnterPlayers extends Component {
       <View style={styles.container}>
 
         <View>
-          <Text style={styles.h1}>Invite some Friends!</Text>
+          <Text style={styles.h1}>Build a Team!</Text>
         </View>
 
 <View style={styles.body}>
