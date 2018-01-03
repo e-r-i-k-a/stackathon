@@ -3,7 +3,8 @@ const api = require('express').Router()
 const db = require('../db/models')
 const Game = db.Game;
 const Player = db.Player;
-// const bluebird = require('bluebird');
+const bluebird = require('bluebird');
+const {resolve} = require('path')
 // import {Linking} from 'react-native';
 
 //GET:
@@ -72,7 +73,6 @@ api.get('/player/:id/?min', (req, res, next) => {
       })
         .then((result) => {
           if ((result.count + 1) >= req.query.min) {
-            // console.log('result.rows[0].dataValues.gameId= ', result.rows[0].dataValues.gameId)
             db.Game.findOne({
               where: {
                 id: Number(result.rows[0].dataValues.gameId)
@@ -84,7 +84,8 @@ api.get('/player/:id/?min', (req, res, next) => {
               })
             })
             .then((updatedGame)=> {
-              res.status(201).send("We have enough people, the game is on!")
+              // res.status(201).send("We have enough people, the game is on!")
+              res.status(201).sendFile(resolve(__dirname, '..', 'ready.html'))
             })
             .catch(next)
           } else {

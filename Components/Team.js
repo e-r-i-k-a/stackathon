@@ -19,7 +19,7 @@ export default class Team extends Component {
     axios.get(homeIp+'/api/game/'+this.props.data)
 		.then(res => res.data)
 		.then(createdGame => {
-      return this.setState({createdGame})
+      this.setState({createdGame})
     })
     .catch((err)=>{console.error('error', err)})
   }
