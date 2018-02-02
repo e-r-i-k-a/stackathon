@@ -84,12 +84,11 @@ api.get('/player/:id/?min', (req, res, next) => {
               })
             })
             .then((updatedGame)=> {
-              // res.status(201).send("We have enough people, the game is on!")
-              res.status(201).sendFile(resolve(__dirname, '..', 'ready.html'))
+              res.status(201).sendFile(resolve(__dirname, '..', 'public/ready.html'))
             })
             .catch(next)
           } else {
-            res.status(200).send("Thanks for responding!  I'll let you know if we get enough people.")
+            res.status(201).sendFile(resolve(__dirname, '..', 'public/notReady.html'))
           }
         })
     })

@@ -32,11 +32,11 @@ export default class Team extends Component {
     let gameDate = `${date.slice(5,7)}/${date.slice(8,10)}/${date.slice(0,4)}`
 
     let mailTo = `mailto:${email}`
-    let subject = `?subject=Meet me for ${gameName}!`
+    let mailSubject = `?subject=Meet me for ${gameName}!`
     let confirmLink = `<a href = ${homeIp}/api/player/${id}min?min=${minPlayer}>Click</a>`
-    let body = `&body=Join me on ${gameDate} at ${gameTime} for ${gameName}!  I need at least ${minPlayer} people.  Are you down? ${confirmLink} if yes :-)`
+    let mailBody = `&body=Join me on ${gameDate} at ${gameTime} for ${gameName}!  I need at least ${minPlayer} people.  Are you down? ${confirmLink} if yes :-)`
 
-    Linking.openURL(mailTo + subject + body)
+    Linking.openURL(mailTo + mailSubject + mailBody)
   }
 
   render() {
