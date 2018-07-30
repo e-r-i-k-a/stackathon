@@ -3,7 +3,7 @@ import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, 
 import styles from '../public/stylesheet.js'
 import axios from 'axios'
 import {Actions, Router, Scene} from 'react-native-router-flux'
-import {homeIp, schoolIp} from '../server/ip'
+import {homeIp, home2Ip, schoolIp} from '../server/ip'
 
 export default class Team extends Component {
 
@@ -16,7 +16,7 @@ export default class Team extends Component {
   }
 
 	componentDidMount () {
-    axios.get(homeIp+'/api/game/'+this.props.data)
+    axios.get(home2Ip+'/api/game/'+this.props.data)
 		.then(res => res.data)
 		.then(createdGame => {
       this.setState({createdGame})
@@ -33,7 +33,7 @@ export default class Team extends Component {
 
     let mailTo = `mailto:${email}`
     let mailSubject = `?subject=Meet me for ${gameName}!`
-    let confirmLink = `<a href = ${homeIp}/api/player/${id}min?min=${minPlayer}>Click</a>`
+    let confirmLink = `<a href = ${home2Ip}/api/player/${id}min?min=${minPlayer}>Click</a>`
     let mailBody = `&body=Join me on ${gameDate} at ${gameTime} for ${gameName}!  I need at least ${minPlayer} people.  Are you down? ${confirmLink} if yes :-)`
 
     Linking.openURL(mailTo + mailSubject + mailBody)

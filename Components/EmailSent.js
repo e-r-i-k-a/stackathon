@@ -3,7 +3,7 @@ import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, 
 import styles from '../public/stylesheet.js'
 import axios from 'axios'
 import {Actions, Router, Scene} from 'react-native-router-flux'
-import {homeIp, schoolIp} from '../server/ip'
+// import {homeIp, schoolIp} from '../server/ip'
 
 export default class EmailSent extends Component {
 

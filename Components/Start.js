@@ -4,7 +4,7 @@ import styles from '../public/stylesheet.js'
 import axios from 'axios'
 import {Actions, Router, Scene} from 'react-native-router-flux'
 import DatePicker from 'react-native-datepicker'
-import {homeIp, schoolIp} from '../server/ip'
+import {homeIp, home2Ip, schoolIp} from '../server/ip'
 
 export default class Start extends Component {
 
@@ -21,7 +21,7 @@ export default class Start extends Component {
 
   handleSubmit(event){
     if (this.state.gameName && this.state.gameDate && this.state.minPlayer) {
-    axios.post(homeIp+'/api/game', {
+    axios.post(home2Ip+'/api/game', {
       name: this.state.gameName,
       date: this.state.gameDate,
       minPlayer: this.state.minPlayer,

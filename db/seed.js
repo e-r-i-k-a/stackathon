@@ -1,6 +1,6 @@
 const express = require('express')
-const db = require('./db')
-const Game = require('./db/models').Game;
+const db = require('../db')
+const Game = require('../db/models').Game;
 // const Player = require('./db/models').Player;
 
 db.sync({force: true})

@@ -3,7 +3,7 @@ import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, 
 import styles from '../public/stylesheet.js'
 import axios from 'axios'
 import {Actions, Router, Scene} from 'react-native-router-flux'
-import {homeIp, schoolIp} from '../server/ip'
+import {homeIp, home2Ip, schoolIp} from '../server/ip'
 
 export default class Home extends Component {
 
@@ -15,7 +15,7 @@ export default class Home extends Component {
   }
 
 	componentDidMount () {
-    axios.get(homeIp + '/api/game')
+    axios.get(home2Ip + '/api/game')
 		.then(res => res.data)
 		.then(games => {
       this.setState({games})

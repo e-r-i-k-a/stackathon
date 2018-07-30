@@ -3,7 +3,7 @@ import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, 
 import styles from '../public/stylesheet.js'
 import axios from 'axios'
 import {Actions, Router, Scene} from 'react-native-router-flux'
-import {homeIp, schoolIp} from '../server/ip'
+import {homeIp, home2Ip, schoolIp} from '../server/ip'
 import Team from './Team'
 
 export default class EnterPlayers extends Component {
@@ -20,7 +20,7 @@ export default class EnterPlayers extends Component {
   }
 
 	componentDidMount () {
-    axios.get(homeIp+'/api/game/'+this.props.data.id)
+    axios.get(home2Ip+'/api/game/'+this.props.data.id)
 		.then(res => res.data)
 		.then(createdGame => {
       this.setState({createdGame})
@@ -33,7 +33,7 @@ export default class EnterPlayers extends Component {
   }
 
   handleSubmit(event){
-    axios.post(homeIp+'/api/player/game/'+this.props.data.id, {
+    axios.post(home2Ip+'/api/player/game/'+this.props.data.id, {
       email: this.state.playerEmail
     })
     .then(() => {
