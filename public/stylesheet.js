@@ -42,7 +42,8 @@ export default styles = StyleSheet.create({
     width: 180,
     alignItems: 'center',
     backgroundColor: '#A32C41',
-    borderRadius: 50
+    borderRadius: 50,
+    margin: 10
   },
   buttonText: {
     padding: 8,

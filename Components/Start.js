@@ -13,12 +13,12 @@ export default class Start extends Component {
       gameId: null,
       gameName: '',
       gameDate: '',
-      minPlayer: 0
+      minPlayer: 1
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleSubmit(e) {
+  handleSubmit() {
     if (this.state.gameName && this.state.gameDate && this.state.minPlayer) {
       axios.post(hamps + '/api/game', {
         name: this.state.gameName,
