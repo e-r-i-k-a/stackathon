@@ -1,35 +1,34 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, ScrollView, FlatList, SectionList, View} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, ScrollView, FlatList, SectionList, View } from 'react-native';
 import styles from '../public/stylesheet.js'
 import axios from 'axios'
-import {Actions, Router, Scene} from 'react-native-router-flux'
+import { Actions, Router, Scene } from 'react-native-router-flux'
 import DatePicker from 'react-native-datepicker'
-import {homeIp, home2Ip, schoolIp} from '../server/ip'
+import { homeIp, home2Ip, schoolIp, hamps } from '../server/ip'
 
 export default class Start extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
       gameId: null,
       gameName: '',
       gameDate: '',
-      minPlayer: 1
+      minPlayer: 0
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleSubmit(event){
+  handleSubmit(e) {
     if (this.state.gameName && this.state.gameDate && this.state.minPlayer) {
-    axios.post(home2Ip+'/api/game', {
-      name: this.state.gameName,
-      date: this.state.gameDate,
-      minPlayer: this.state.minPlayer,
-    })
-    .then((createdGame) => {
-      Alert.alert("Your game has been created!  Let's invite some peeps")
-      Actions.EnterPlayers(createdGame)
-    })
+      axios.post(hamps + '/api/game', {
+        name: this.state.gameName,
+        date: this.state.gameDate,
+        minPlayer: this.state.minPlayer,
+      })
+        .then((createdGame) => {
+          Alert.alert("Your game has been created!  Let's invite some peeps")
+          Actions.EnterPlayers(createdGame)
+        })
     } else {
       if (!this.state.gameName) {
         Alert.alert('Please name your game!')
@@ -42,30 +41,26 @@ export default class Start extends Component {
   }
 
   render() {
-    const newDate = new Date();
-    const now = newDate.getFullYear() + '-' + (newDate.getMonth()+1) + '-' + newDate.getDate()
+    const d = new Date();
+    const now = `${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}`;
 
     return (
       <View style={styles.container}>
-        <View>
-          <Text style={styles.h1}>Create a Game!</Text>
-        </View>
-
-<View style={styles.body}>
+        <Text style={styles.h1}>Create a Game!</Text>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>Name: </Text>
+          <Text style={styles.inputLabel}>Name:</Text>
           <TextInput
             style={styles.inputText}
             placeholder={this.state.gameName ? this.state.gameName : "Weekly Card Game"}
-            placeholderTextColor = "gray"
-            onChangeText={(gameName)=> this.setState({gameName})} />
+            placeholderTextColor="gray"
+            onChangeText={(gameName) => this.setState({ gameName })} />
         </View>
 
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>Date: </Text>
+        <View style={styles.inputContainer} >
+          <Text style={styles.inputLabel}>Date:</Text>
           <DatePicker
-            style={{width: 200}}
+            style={{ width: '80%' }}
             mode="datetime"
             placeholder={this.state.gameDate ? this.state.gameDate : "Next Friday Night"}
             format="YYYY-MM-DD hh:mm"
@@ -81,8 +76,10 @@ export default class Start extends Component {
               },
               dateInput: {
                 marginLeft: 36,
+                marginRight: 0,
                 height: 40,
                 borderColor: 'gray',
+                borderWidth: 1,
                 backgroundColor: 'white',
               },
               placeholderText: {
@@ -90,22 +87,20 @@ export default class Start extends Component {
                 fontSize: 15
               }
             }}
-            onDateChange={(gameDate) => {this.setState({gameDate})}}
+            onDateChange={(gameDate) => { this.setState({ gameDate }) }}
           />
         </View>
 
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>Minimum Players: </Text>
+        <View style={styles.inputContainer} >
+          <Text style={styles.inputLabel}>Minimum Players:</Text>
           <TextInput
             style={styles.inputText}
             placeholder='We need at least 4 players'
-            placeholderTextColor = "gray"
-            keyboardType = 'numeric'
+            placeholderTextColor="gray"
+            keyboardType='numeric'
             returnKeyType='done'
-            onChangeText={(minPlayer)=> this.setState({minPlayer})} />
+            onChangeText={(minPlayer) => this.setState({ minPlayer })} />
         </View>
-
-</View>
 
         <TouchableWithoutFeedback
           onPress={this.handleSubmit} >

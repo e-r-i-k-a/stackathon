@@ -14,11 +14,12 @@ export default styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    margin: 20
+    margin: 0
   },
   h1: {
     fontSize: 40,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    margin: 10
   },
   h2: {
     fontSize: 30,
@@ -57,28 +58,27 @@ export default styles = StyleSheet.create({
   },
   inputContainer: {
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: 'column',
     alignItems: 'center',
-    height: 40,
+    alignSelf: 'stretch',
     margin: 5
   },
   inputLabel: {
-    height: 40,
+    justifyContent: 'flex-start',
+    width: '80%',
     fontSize: 15,
     color: 'black',
     fontWeight: 'bold',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end'
   },
   inputText: {
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
     backgroundColor: 'white',
-    color: 'gray',
-    fontSize: 15
+    fontSize: 15,
+    width: '80%',
+    margin: 5,
+    textAlign: 'center'
   },
   playerListText: {
     margin: 5,
