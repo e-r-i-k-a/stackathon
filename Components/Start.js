@@ -4,7 +4,8 @@ import styles from '../public/stylesheet.js'
 import axios from 'axios'
 import { Actions, Router, Scene } from 'react-native-router-flux'
 import DatePicker from 'react-native-datepicker'
-import { homeIp, home2Ip, schoolIp, hamps } from '../server/ip'
+import moment from 'moment';
+import { qns } from '../server/ip'
 
 export default class Start extends Component {
   constructor(props) {
@@ -13,36 +14,39 @@ export default class Start extends Component {
       gameId: null,
       gameName: '',
       gameDate: '',
-      minPlayer: 1
+      minPlayer: 0
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleSubmit() {
-    if (this.state.gameName && this.state.gameDate && this.state.minPlayer) {
-      axios.post(hamps + '/api/game', {
-        name: this.state.gameName,
-        date: this.state.gameDate,
-        minPlayer: this.state.minPlayer,
+    const { gameName, gameDate, minPlayer } = this.state;
+
+    if (gameName && gameDate && minPlayer) {
+      const date = moment(gameDate, 'MMMM Do YYYY, h:mm a').format('YYYY-MM-DD HH:mm:ss').toString();
+
+      axios.post(qns + '/api/game', {
+        name: gameName,
+        date,
+        minPlayer,
       })
         .then((createdGame) => {
           Alert.alert("Your game has been created!  Let's invite some peeps")
           Actions.EnterPlayers(createdGame)
         })
     } else {
-      if (!this.state.gameName) {
+      if (!gameName) {
         Alert.alert('Please name your game!')
-      } else if (!this.state.gameDate) {
+      } else if (!gameDate) {
         Alert.alert('When is your game?')
-      } else if (!this.state.minPlayer) {
+      } else if (!minPlayer) {
         Alert.alert('How many players do you need?')
       }
     }
   }
 
   render() {
-    const d = new Date();
-    const now = `${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}`;
+    const now = moment().format('MMMM Do YYYY, h:mm a');
 
     return (
       <View style={styles.container}>
@@ -52,7 +56,7 @@ export default class Start extends Component {
           <Text style={styles.inputLabel}>Name:</Text>
           <TextInput
             style={styles.inputText}
-            placeholder={this.state.gameName ? this.state.gameName : "Weekly Card Game"}
+            placeholder={this.state.gameName || 'Weekly Card Game'}
             placeholderTextColor="gray"
             onChangeText={(gameName) => this.setState({ gameName })} />
         </View>
@@ -62,8 +66,9 @@ export default class Start extends Component {
           <DatePicker
             style={{ width: '80%' }}
             mode="datetime"
-            placeholder={this.state.gameDate ? this.state.gameDate : "Next Friday Night"}
-            format="YYYY-MM-DD hh:mm"
+            date={this.state.gameDate}
+            placeholder={this.state.gameDate || "Next Friday Night"}
+            format='MMMM Do YYYY, h:mm a'
             minDate={now}
             confirmBtnText="Select"
             cancelBtnText="Back"

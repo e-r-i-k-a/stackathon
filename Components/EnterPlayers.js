@@ -3,7 +3,7 @@ import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, 
 import styles from '../public/stylesheet.js'
 import axios from 'axios'
 import { Actions, Router, Scene } from 'react-native-router-flux'
-import { homeIp, home2Ip, schoolIp, hamps } from '../server/ip'
+import { qns } from '../server/ip'
 // import Team from './Team'
 
 export default class EnterPlayers extends Component {
@@ -23,7 +23,7 @@ export default class EnterPlayers extends Component {
   }
 
   handleAddPlayer() {
-    axios.post(hamps + '/api/player/game/' + this.props.data.id, {
+    axios.post(qns + '/api/player/game/' + this.props.data.id, {
       email: this.state.playerEmail
     })
       .then(() => {
