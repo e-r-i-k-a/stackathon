@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, ScrollView, FlatList, SectionList, View } from 'react-native';
-import styles from '../public/stylesheet.js'
-import axios from 'axios'
-import { Actions, Router, Scene } from 'react-native-router-flux'
-import { qns } from '../server/ip'
-// import Team from './Team'
+import { Text, Image, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, ScrollView, FlatList, SectionList, View } from 'react-native';
+import { Input } from 'react-native-elements';
+import styles from '../public/stylesheet.js';
+import axios from 'axios';
+import { Actions } from 'react-native-router-flux';
+import { qns } from '../server/ip';
 
 export default class EnterPlayers extends Component {
 
@@ -13,13 +13,8 @@ export default class EnterPlayers extends Component {
     this.state = {
       playerEmail: ''
     },
-    this.handleInputChange = this.handleInputChange.bind(this)
     this.handleAddPlayer = this.handleAddPlayer.bind(this)
     this.handleViewTeam = this.handleViewTeam.bind(this)
-  }
-
-  handleInputChange(playerEmail) {
-    this.setState({ playerEmail })
   }
 
   handleAddPlayer() {
@@ -44,19 +39,21 @@ export default class EnterPlayers extends Component {
       <View style={styles.container}>
         <Text style={styles.h1}>Build a Team!</Text>
 
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>Player Email: </Text>
-          <TextInput
-            style={styles.inputText}
-            onChangeText={(playerEmail) => this.handleInputChange(playerEmail)}
+          <Input
+            label='Player Email'
+            placeholder='Enter an email address'
             returnKeyType='done'
             autoCorrect={false}
             keyboardType='email-address'
             value={this.state.playerEmail}
-            placeholder='Enter an email address'
-            placeholderTextColor='gray'
+            onChangeText={(playerEmail) => this.setState({playerEmail})}
+            leftIcon={
+              <Image
+              source={require('../public/envelope-solid.png')}
+              style={styles.icon}
+              />
+            }
           />
-        </View>
 
           <TouchableWithoutFeedback
             onPress={this.handleAddPlayer} >

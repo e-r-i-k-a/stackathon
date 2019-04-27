@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, ScrollView, FlatList, SectionList, View } from 'react-native';
+import { Text, Image, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import { Input } from 'react-native-elements';
 import styles from '../public/stylesheet.js';
 import axios from 'axios';
-import { Actions, Router, Scene } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import DatePicker from 'react-native-datepicker';
 import moment from 'moment';
 import { qns } from '../server/ip';
@@ -56,29 +56,18 @@ export default class Start extends Component {
         <Input
           label='Name'
           placeholder={this.state.gameName || 'Weekly Card Game'}
+          returnKeyType='done'
+          onChangeText={(gameName) => this.setState({ gameName })}
           leftIcon={
             <Image
             source={require('../public/dice-solid.png')}
-            resizeMode='contain'
-            aspectRatio={0.07}
-            style={{marginRight: 10, marginBottom: 5}}
+            style={styles.icon}
             />
           }
-          returnKeyType='done'
-          onChangeText={(gameName) => this.setState({ gameName })}
-          containerStyle={{}}
-          labelStyle={{}}
-          inputContainerStyle={{}}
         />
 
         <View style={{width: '100%', paddingHorizontal: 10, display: 'flex'}} >
-          <Text
-            style={{
-              color: '#86939e',
-              fontSize: 16,
-              fontWeight: 'bold'
-              }}>
-              Date</Text>
+          <Text style={styles.inputLabel}>Date</Text>
           <DatePicker
             mode="datetime"
             date={this.state.gameDate}
@@ -88,66 +77,40 @@ export default class Start extends Component {
             confirmBtnText="Select"
             cancelBtnText="Back"
             iconSource={require('../public/calendar-alt-regular.png')}
-            style={{
-              display: 'flex',
-              paddingHorizontal: 10,
-              width: '100%',
-              borderBottomWidth: 1,
-              borderColor: '#86939e',
-              transform: [{translateX: 0}],
-              height: 40,
-            }}
+            onDateChange={(gameDate) => { this.setState({ gameDate }) }}
+            style={styles.datePicker}
             customStyles={{
               dateIcon: {
+                ...styles.icon,
                 position: 'absolute',
                 left: 0,
-                marginRight: 10,
-                marginBottom: 5,
-                overflow: 'hidden',
-                resizeMode:'contain',
-                aspectRatio: 0.07
               },
               dateInput:{
                 width: '100%',
                 borderWidth: 0
               },
               placeholderText: {
-                minHeight: 40,
-                color: 'black',
-                alignSelf: 'center',
-                flex: 1,
-                fontSize: 18,
-                width: '100%',
-                marginLeft: 100,
+                ...styles.inputText
               },
               dateText: {
-                minHeight: 40,
-                color: 'black',
-                alignSelf: 'center',
-                flex: 1,
-                fontSize: 18,
-                width: '100%',
-                marginLeft: 100,
+                ...styles.inputText
               }
             }}
-            onDateChange={(gameDate) => { this.setState({ gameDate }) }}
           />
         </View>
 
         <Input
           label='Minimum Players'
           placeholder={this.state.minPlayer || 'We need at least 4 players'}
-          leftIcon={
-            <Image
-            source={require('../public/users-solid.png')}
-            resizeMode='contain'
-            aspectRatio={0.07}
-            style={{marginRight: 12, marginBottom: 5}}
-            />
-          }
           returnKeyType='done'
           keyboardType='numeric'
           onChangeText={(minPlayer) => this.setState({ minPlayer })}
+          leftIcon={
+            <Image
+            source={require('../public/users-solid.png')}
+            style={styles.icon}
+            />
+          }
         />
 
         <TouchableWithoutFeedback

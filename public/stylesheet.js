@@ -56,30 +56,6 @@ export default styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white'
   },
-  inputContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    margin: 5
-  },
-  inputLabel: {
-    justifyContent: 'flex-start',
-    width: '80%',
-    fontSize: 15,
-    color: 'black',
-    fontWeight: 'bold',
-  },
-  inputText: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    backgroundColor: 'white',
-    fontSize: 15,
-    width: '80%',
-    margin: 5,
-    textAlign: 'center'
-  },
   playerListText: {
     margin: 5,
     fontSize: 15,
@@ -108,5 +84,34 @@ export default styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     color: 'white'
+  },
+  icon: {
+    resizeMode: 'contain',
+    aspectRatio: 0.07,
+    marginRight: 10,
+    marginBottom: 5
+  },
+  inputLabel: {
+    color: '#86939e',
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  inputText: {
+    minHeight: 40,
+    color: 'black',
+    alignSelf: 'center',
+    flex: 1,
+    fontSize: 18,
+    width: '100%',
+    marginLeft: 100,
+  },
+  datePicker: {
+    display: 'flex',
+    paddingHorizontal: 10,
+    width: '100%',
+    borderBottomWidth: 1,
+    borderColor: '#86939e',
+    transform: [{ translateX: 0 }],
+    height: 40,
   }
 });
