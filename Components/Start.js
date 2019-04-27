@@ -54,10 +54,11 @@ export default class Start extends Component {
         <Text style={styles.h1}>Create a Game!</Text>
 
         <Input
-          label='Name'
+          label='Name:'
           placeholder={this.state.gameName || 'Weekly Card Game'}
           returnKeyType='done'
           onChangeText={(gameName) => this.setState({ gameName })}
+          containerStyle={{margin: 20}}
           leftIcon={
             <Image
             source={require('../public/images/dice-solid.png')}
@@ -67,7 +68,7 @@ export default class Start extends Component {
         />
 
         <View style={{width: '100%', paddingHorizontal: 10, display: 'flex'}} >
-          <Text style={styles.inputLabel}>Date</Text>
+          <Text style={styles.inputLabel}>Date:</Text>
           <DatePicker
             mode="datetime"
             date={this.state.gameDate}
@@ -100,7 +101,7 @@ export default class Start extends Component {
         </View>
 
         <Input
-          label='Minimum Players'
+          label='Minimum Players:'
           placeholder={this.state.minPlayer || 'We need at least 4 players'}
           returnKeyType='done'
           keyboardType='numeric'

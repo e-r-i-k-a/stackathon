@@ -79,5 +79,6 @@ export default styles = StyleSheet.create({
     borderColor: '#86939e',
     transform: [{ translateX: 0 }],
     height: 40,
+    marginBottom: 20
   }
 });
