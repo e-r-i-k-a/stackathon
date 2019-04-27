@@ -40,26 +40,22 @@ export default class EnterPlayers extends Component {
         <Text style={styles.h1}>Build a Team!</Text>
 
           <Input
-            label='Player Email'
+            label='Player Email:'
             placeholder='Enter an email address'
             returnKeyType='done'
             autoCorrect={false}
+            textContentType='emailAddress'
             keyboardType='email-address'
             value={this.state.playerEmail}
             onChangeText={(playerEmail) => this.setState({playerEmail})}
+            onSubmitEditing={this.handleAddPlayer}
+            containerStyle={{margin: 20}}
             leftIcon={
               <Image
               source={require('../public/images/envelope-solid.png')}
               style={styles.icon}
               />
             }
-          />
-
-          <Button
-            title='Add Player'
-            onPress={this.handleAddPlayer}
-            buttonStyle={{...styles.button}}
-            titleStyle={{...styles.buttonText}}
           />
 
           <Button
