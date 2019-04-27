@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, Image, TextInput, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, ScrollView, FlatList, SectionList, View, Linking } from 'react-native';
+import { Text, View, Linking } from 'react-native';
+import { Button } from 'react-native-elements';
 import styles from '../public/stylesheet.js'
 import axios from 'axios'
 import { qns } from '../server/ip'
@@ -44,20 +45,21 @@ export default class Team extends Component {
         <View style={styles.container}>
           <Text style={styles.h2}>My Team</Text>
           <View style={styles.playerListContainer}>
+
             {
               players.map(player => {
                 return <View key={player.id}>
-                  <Text style={styles.playerListText}>{player.email}
-                  </Text>
-                  <TouchableWithoutFeedback
-                    onPress={() => this.sendEmail(player.id, player.email)}>
-                    <View style={styles.inviteButton}>
-                      <Text style={styles.inviteButtonText}>Invite!</Text>
-                    </View>
-                  </TouchableWithoutFeedback>
+                  <Text style={styles.playerListText}>{player.email}</Text>
+                  <Button
+                    title='Invite'
+                    onPress={() => this.sendEmail(player.id, player.email)}
+                    buttonStyle={{...styles.button}}
+                    titleStyle={{...styles.buttonText}}
+                  />
                 </View>
               })
             }
+            
           </View>
         </View>
       )

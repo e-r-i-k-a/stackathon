@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, Image, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, ScrollView, FlatList, SectionList, View } from 'react-native';
-import { Input } from 'react-native-elements';
+import { Text, Image, Alert, View } from 'react-native';
+import { Input, Button } from 'react-native-elements';
 import styles from '../public/stylesheet.js';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
@@ -49,25 +49,25 @@ export default class EnterPlayers extends Component {
             onChangeText={(playerEmail) => this.setState({playerEmail})}
             leftIcon={
               <Image
-              source={require('../public/envelope-solid.png')}
+              source={require('../public/images/envelope-solid.png')}
               style={styles.icon}
               />
             }
           />
 
-          <TouchableWithoutFeedback
-            onPress={this.handleAddPlayer} >
-            <View style={styles.buttonSmall}>
-              <Text style={styles.buttonText}>Add Player</Text>
-            </View>
-          </TouchableWithoutFeedback>
+          <Button
+            title='Add Player'
+            onPress={this.handleAddPlayer}
+            buttonStyle={{...styles.button}}
+            titleStyle={{...styles.buttonText}}
+          />
 
-          <TouchableWithoutFeedback
-            onPress={this.handleViewTeam}>
-            <View style={styles.button}>
-              <Text style={styles.buttonText}>Checkout my Team</Text>
-            </View>
-          </TouchableWithoutFeedback>
+          <Button
+            title='Checkout my Team'
+            onPress={this.handleViewTeam}
+            buttonStyle={{...styles.button}}
+            titleStyle={{...styles.buttonText}}
+          />
 
       </View>
     );

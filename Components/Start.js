@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, Image, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
-import { Input } from 'react-native-elements';
+import { Text, Image, Alert, View } from 'react-native';
+import { Input, Button } from 'react-native-elements';
 import styles from '../public/stylesheet.js';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
@@ -60,7 +60,7 @@ export default class Start extends Component {
           onChangeText={(gameName) => this.setState({ gameName })}
           leftIcon={
             <Image
-            source={require('../public/dice-solid.png')}
+            source={require('../public/images/dice-solid.png')}
             style={styles.icon}
             />
           }
@@ -76,7 +76,7 @@ export default class Start extends Component {
             minDate={now}
             confirmBtnText="Select"
             cancelBtnText="Back"
-            iconSource={require('../public/calendar-alt-regular.png')}
+            iconSource={require('../public/images/calendar-alt-regular.png')}
             onDateChange={(gameDate) => { this.setState({ gameDate }) }}
             style={styles.datePicker}
             customStyles={{
@@ -107,18 +107,18 @@ export default class Start extends Component {
           onChangeText={(minPlayer) => this.setState({ minPlayer })}
           leftIcon={
             <Image
-            source={require('../public/users-solid.png')}
+            source={require('../public/images/users-solid.png')}
             style={styles.icon}
             />
           }
         />
 
-        <TouchableWithoutFeedback
-          onPress={this.handleSubmit} >
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Submit</Text>
-          </View>
-        </TouchableWithoutFeedback>
+        <Button
+          title='Submit'
+          onPress={this.handleSubmit}
+          buttonStyle={{...styles.button}}
+          titleStyle={{...styles.buttonText}}
+        />
 
       </View>
     );
