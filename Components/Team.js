@@ -24,28 +24,28 @@ export default class Team extends Component {
   }
 
   sendEmail(id, email) {
-    const gameName = this.state.createdGame.name
-    const minPlayer = this.state.createdGame.minPlayer
-    const date = this.state.createdGame.date
-    const gameTime = date.substr(date.indexOf('T') + 1).slice(0, 5)
-    const gameDate = `${date.slice(5, 7)}/${date.slice(8, 10)}/${date.slice(0, 4)}`
+    const {name, minPlayer, date} = this.state.createdGame;
+    const time = date.substr(date.indexOf('T') + 1).slice(0, 5);
+    const gameDate = `${date.slice(5, 7)}/${date.slice(8, 10)}/${date.slice(0, 4)}`;
 
-    const mailTo = `mailto:${email}`
-    const mailSubject = `?subject=Meet me for ${gameName}!`
-    const confirmLink = `<a href = ${qns}/api/player/${id}min?min=${minPlayer}>Click</a>`
-    const mailBody = `&body=Join me on ${gameDate} at ${gameTime} for ${gameName}!  I need at least ${minPlayer} people.  Are you down? ${confirmLink} if yes :-)`
+    const mailTo = `mailto:${email}`;
+    const mailSubject = `?subject=Meet me for ${name}!`;
+    const confirmLink = `<a href = ${qns}/api/player/${id}min?min=${minPlayer}>Click</a>`;
+    const mailBody = `&body=Join me on ${gameDate} at ${time} for ${name}!  I need at least ${minPlayer} people.  Are you down? ${confirmLink} if yes :-)`;
 
-    Linking.openURL(mailTo + mailSubject + mailBody)
+    Linking.openURL(mailTo + mailSubject + mailBody);
   }
 
   render() {
-    if (this.state.createdGame.players && this.state.createdGame.players.length) {
+    const {players} = this.state.createdGame;
+
+    if (players && players.length) {
       return (
         <View style={styles.container}>
           <Text style={styles.h2}>My Team</Text>
           <View style={styles.playerListContainer}>
             {
-              this.state.createdGame.players.map(player => {
+              players.map(player => {
                 return <View key={player.id}>
                   <Text style={styles.playerListText}>{player.email}
                   </Text>
@@ -53,12 +53,6 @@ export default class Team extends Component {
                     onPress={() => this.sendEmail(player.id, player.email)}>
                     <View style={styles.inviteButton}>
                       <Text style={styles.inviteButtonText}>Invite!</Text>
-                    </View>
-                  </TouchableWithoutFeedback>
-                  <TouchableWithoutFeedback
-                    onPress={() => this.sendEmail(player.id, player.email)}>
-                    <View style={styles.inviteButton}>
-                      <Text style={styles.inviteButtonText}>Invite2!</Text>
                     </View>
                   </TouchableWithoutFeedback>
                 </View>
