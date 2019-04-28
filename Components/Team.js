@@ -39,6 +39,7 @@ export default class Team extends Component {
 
   render() {
     const { players } = this.state.createdGame;
+    console.log({players})
 
     if (players && players.length) {
       return (
@@ -56,7 +57,7 @@ export default class Team extends Component {
                 <Button
                   key={player.id}
                   title='Invite'
-                  onPress={this.sendEmail}
+                  onPress={() => this.sendEmail(player.id, player.email)}
                   buttonStyle={{ ...styles.button, padding: 5 }}
                   titleStyle={{ ...styles.buttonText, fontSize: 14 }}
                 />
