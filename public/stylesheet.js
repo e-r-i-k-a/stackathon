@@ -18,26 +18,23 @@ export default styles = StyleSheet.create({
   h1: {
     fontSize: 40,
     fontWeight: 'bold',
-    margin: 20
+    margin: 20,
   },
   h2: {
     fontSize: 30,
-    fontWeight: 'bold'
-  },
-  playerListText: {
-    margin: 5,
-    fontSize: 15,
     fontWeight: 'bold',
-    color: 'white',
+    margin: 20
   },
-  playerListContainer: {
-    margin: 18,
-    width: 280,
-    alignItems: 'center',
-    borderRadius: 50,
-    backgroundColor: '#DD9FED',
+  playerRow: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
+    alignContent: 'center',
+  },
+  playerEmail: {
+    textAlign: 'center',
+    fontSize: 14,
+    position: 'relative',
+    paddingVertical: 20
   },
   button: {
     backgroundColor: '#A32C41',
@@ -55,7 +52,6 @@ export default styles = StyleSheet.create({
     resizeMode: 'contain',
     aspectRatio: 0.07,
     marginRight: 10,
-    marginBottom: 5
   },
   inputLabel: {
     color: '#86939e',
@@ -70,15 +66,14 @@ export default styles = StyleSheet.create({
     fontSize: 18,
     width: '100%',
     marginLeft: 100,
+    paddingTop: 8
   },
   datePicker: {
-    display: 'flex',
     paddingHorizontal: 10,
     width: '100%',
     borderBottomWidth: 1,
     borderColor: '#86939e',
     transform: [{ translateX: 0 }],
     height: 40,
-    marginBottom: 20
   }
 });

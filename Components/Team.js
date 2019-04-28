@@ -25,7 +25,7 @@ export default class Team extends Component {
   }
 
   sendEmail(id, email) {
-    const {name, minPlayer, date} = this.state.createdGame;
+    const { name, minPlayer, date } = this.state.createdGame;
     const time = date.substr(date.indexOf('T') + 1).slice(0, 5);
     const gameDate = `${date.slice(5, 7)}/${date.slice(8, 10)}/${date.slice(0, 4)}`;
 
@@ -38,29 +38,31 @@ export default class Team extends Component {
   }
 
   render() {
-    const {players} = this.state.createdGame;
+    const { players } = this.state.createdGame;
 
     if (players && players.length) {
       return (
         <View style={styles.container}>
           <Text style={styles.h2}>My Team</Text>
-          <View style={styles.playerListContainer}>
-
-            {
-              players.map(player => {
-                return <View key={player.id}>
-                  <Text style={styles.playerListText}>{player.email}</Text>
-                  <Button
-                    title='Invite'
-                    onPress={() => this.sendEmail(player.id, player.email)}
-                    buttonStyle={{...styles.button}}
-                    titleStyle={{...styles.buttonText}}
-                  />
-                </View>
-              })
-            }
-            
-          </View>
+          {
+            players.map(player => {
+              return <View key={player.id} style={{ ...styles.playerRow }}>
+                <Text
+                  key={player.id}
+                  numberOfLines={1}
+                  ellipsizeMode='tail'
+                  style={{ ...styles.playerEmail }}
+                >{player.email}</Text>
+                <Button
+                  key={player.id}
+                  title='Invite'
+                  onPress={this.sendEmail}
+                  buttonStyle={{ ...styles.button, padding: 5 }}
+                  titleStyle={{ ...styles.buttonText, fontSize: 14 }}
+                />
+              </View>
+            })
+          }
         </View>
       )
     } else {

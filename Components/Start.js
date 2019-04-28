@@ -58,16 +58,16 @@ export default class Start extends Component {
           placeholder={this.state.gameName || 'Weekly Card Game'}
           returnKeyType='done'
           onChangeText={(gameName) => this.setState({ gameName })}
-          containerStyle={{margin: 20}}
+          containerStyle={{ margin: 20 }}
           leftIcon={
             <Image
-            source={require('../public/images/dice-solid.png')}
-            style={styles.icon}
+              source={require('../public/images/dice-solid.png')}
+              style={styles.icon}
             />
           }
         />
 
-        <View style={{width: '100%', paddingHorizontal: 10, display: 'flex'}} >
+        <View style={{ width: '100%', paddingHorizontal: 10, display: 'flex' }} >
           <Text style={styles.inputLabel}>Date:</Text>
           <DatePicker
             mode="datetime"
@@ -86,7 +86,7 @@ export default class Start extends Component {
                 position: 'absolute',
                 left: 0,
               },
-              dateInput:{
+              dateInput: {
                 width: '100%',
                 borderWidth: 0
               },
@@ -106,10 +106,11 @@ export default class Start extends Component {
           returnKeyType='done'
           keyboardType='numeric'
           onChangeText={(minPlayer) => this.setState({ minPlayer })}
+          containerStyle={{ margin: 20 }}
           leftIcon={
             <Image
-            source={require('../public/images/users-solid.png')}
-            style={styles.icon}
+              source={require('../public/images/users-solid.png')}
+              style={styles.icon}
             />
           }
         />
@@ -117,8 +118,8 @@ export default class Start extends Component {
         <Button
           title='Submit'
           onPress={this.handleSubmit}
-          buttonStyle={{...styles.button}}
-          titleStyle={{...styles.buttonText}}
+          buttonStyle={{ ...styles.button }}
+          titleStyle={{ ...styles.buttonText }}
         />
 
       </View>
