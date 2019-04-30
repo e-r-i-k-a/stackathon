@@ -10,6 +10,7 @@ export default class Team extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      didFetch: false,
       createdGame: {}
     }
     this.sendEmail = this.sendEmail.bind(this)
@@ -19,7 +20,10 @@ export default class Team extends Component {
     axios.get(qns + '/api/game/' + this.props.data)
       .then(res => res.data)
       .then(createdGame => {
-        this.setState({ createdGame })
+        this.setState({
+          createdGame,
+          didFetch: true
+        })
       })
       .catch((err) => { console.error('error', err) })
   }
@@ -32,30 +36,30 @@ export default class Team extends Component {
     const mailTo = `mailto:${email}`;
     const mailSubject = `?subject=Meet me for ${name}!`;
     const confirmLink = `<a href = ${qns}/api/player/${id}min?min=${minPlayer}>Click</a>`;
-    const mailBody = `&body=Join me on ${gameDate} at ${time} for ${name}!  I need at least ${minPlayer} people.  Are you down? ${confirmLink} if yes :-)`;
+    const mailBody = `&body=Join me on ${gameDate} at ${time} for ${name}!  I need at least ${minPlayer} ${minPlayer == 1 ? 'person' : 'people'}.  Are you down? ${confirmLink} if yes :-)`;
 
     Linking.openURL(mailTo + mailSubject + mailBody);
   }
 
   render() {
-    const { players } = this.state.createdGame;
+    const { players } = this.state.createdGame || [];
     console.log({players})
 
-    if (players && players.length) {
+    if (players && !!players.length) {
       return (
         <View style={styles.container}>
           <Text style={styles.h2}>My Team</Text>
           {
             players.map(player => {
-              return <View key={player.id} style={{ ...styles.playerRow }}>
+              return <View key={`teamView-${player.id}`} style={{ ...styles.playerRow }}>
                 <Text
-                  key={player.id}
+                  key={`teamText-${player.id}`}
                   numberOfLines={1}
                   ellipsizeMode='tail'
                   style={{ ...styles.playerEmail }}
                 >{player.email}</Text>
                 <Button
-                  key={player.id}
+                  key={`teamButton-${player.id}`}
                   title='Invite'
                   onPress={() => this.sendEmail(player.id, player.email)}
                   buttonStyle={{ ...styles.button, padding: 5 }}
@@ -66,12 +70,14 @@ export default class Team extends Component {
           }
         </View>
       )
-    } else {
+    } else if (!!this.state.didFetch) {
       return (
         <View style={styles.container}>
           <Text style={styles.h2}>Add some Players!</Text>
         </View>
       )
+    } else {
+      return null;
     }
   }
 }

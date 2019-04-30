@@ -35,6 +35,7 @@ export default class Start extends Component {
           Alert.alert("Your game has been created!  Let's invite some peeps")
           Actions.EnterPlayers(createdGame)
         })
+        .catch(err => console.error(err))
     } else {
       if (!gameName) {
         Alert.alert('Please name your game!')
